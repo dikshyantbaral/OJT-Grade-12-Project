@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block class %} class="sub_page" {% endblock %}
+{% block menu_status %}active{% endblock menu_status %}
+
+{% block main %}
+<!-- food section -->
+<section class="food_section layout_padding-bottom">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>Our Menu</h2>
+    </div>
+
+    <ul class="filters_menu">
+      <li class="active" data-filter="*">All</li>
+      {% for i in list %}
+        <li data-filter=".{{ i.Category_name }}">{{ i.Category_name }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="filters-content">
+      <div class="row grid">
+        {% for j in items %}
+          <div class="col-sm-6 col-lg-4 all {{ j.Category.Category_name }}">
+            <div class="box">
+              <div class="img-box">
+                <img src="{{ j.image.url }}" alt="{{ j.Item_name }}">
+              </div>
+              <div class="detail-box">
+                <h5>{{ j.Item_name }}</h5>
+                <p>{{ j.description }}</p>
+                <div class="options">
+                  <h6>Nrs.{{ j.Price }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="btn-box">
+      <a href="">
+        View More
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- end food section -->
+
+{% endblock main %}
